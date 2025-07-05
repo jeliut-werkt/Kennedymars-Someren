@@ -64,19 +64,6 @@
         const start = latlngs[0];
         const end = latlngs[latlngs.length - 1];
 
-        // Startpopup met media
-        L.marker(start, { icon: startIcon })
-          .addTo(map)
-          .bindPopup(`
-            <h3>[Naam van degene die ik gesproken heb + locatie]</h3>
-            <img src="fotos/foto.jpg" alt="Naam" width="200" style="margin-top: 10px; border-radius: 8px;" />
-            <p><strong>Wat:</strong> tekst.<br>
-            <strong>Tijd:</strong> tijd</p>
-            <video width="250" controls>
-              <source src="videos/mijnvideo.mp4" type="video/mp4">
-            </video>
-          `);
-
         // Start- en eindmarker
         // L.marker(start, { icon: startIcon }).addTo(map).bindPopup('<h3>Startpunt</h3><p>De wandeling begint hier! Je kunt het!</p>');
         // L.marker(end, { icon: finishIcon }).addTo(map).bindPopup('<h3>Eindpunt</h3><p>Gefeliciteerd, je bent er!</p>');
@@ -85,10 +72,10 @@
         L.marker(start, { icon: startIcon })
           .addTo(map)
           .bindPopup(`
-            <h3>[Naam van degene die ik gesproken heb + locatie]</h3>
-            <img src="fotos/foto.jpg" alt="Naam" width="200" style="margin-top: 10px; border-radius: 8px;" />
-            <p><strong>Wat:</strong> tekst.<br>
-            <strong>Tijd:</strong> tijd</p>
+            <h3>[Daniëlle Bankers - Someren]</h3>
+            <img src="db1.jpeg" alt="Danielle" width="200" style="margin-top: 10px; border-radius: 8px;" />
+            <p> <strong>Tijd: Zaterdag, 19:30</strong> tijd
+            <strong>Wat: Daniëlle Bankers (43) uit Asten loopt de Kennedymars voor de zestiende keer. ,,Ik loop de tocht alleen in Someren, die vind ik het gezelligst”, vertelt ze een klein half uur voor het startschot klinkt. ,,Vroeger was het eerlijk gezegd nog gezelliger, toen liepen we ook door Heusden. Het is jammer dat ze dat uit de route hebben gehaald.” Ze hoopt morgen aan het einde van de ochtend binnen te zijn. ,,Geoefend heb ik niet, gewoon verstand op nul en lopen”, zegt de Astense met een grote lach.</strong> tekst.<br></p>
             <video width="250" controls>
               <source src="videos/mijnvideo.mp4" type="video/mp4">
             </video>
