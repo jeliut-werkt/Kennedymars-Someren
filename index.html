@@ -16,7 +16,6 @@
     #map {
       height: 100vh;
     }
-    
   </style>
 </head>
 <body>
@@ -47,14 +46,12 @@
     .on('ready', function () {
       map.fitBounds(this.getBounds());
 
-      // Verwijder ongewenste markers
       this.eachLayer(function (layer) {
         if (layer instanceof L.Marker) {
           routeLayer.removeLayer(layer);
         }
       });
 
-      // Zoek route (Polyline)
       let line;
       this.eachLayer(function (layer) {
         if (layer instanceof L.Polyline) {
@@ -67,6 +64,19 @@
         const start = latlngs[0];
         const end = latlngs[latlngs.length - 1];
 
+        // Startpopup met media
+        L.marker(start, { icon: startIcon })
+          .addTo(map)
+          .bindPopup(`
+            <h3>[Naam van degene die ik gesproken heb + locatie]</h3>
+            <img src="fotos/foto.jpg" alt="Naam" width="200" style="margin-top: 10px; border-radius: 8px;" />
+            <p><strong>Wat:</strong> tekst.<br>
+            <strong>Tijd:</strong> tijd</p>
+            <video width="250" controls>
+              <source src="videos/mijnvideo.mp4" type="video/mp4">
+            </video>
+          `);
+
         // Start- en eindmarker
         // L.marker(start, { icon: startIcon }).addTo(map).bindPopup('<h3>Startpunt</h3><p>De wandeling begint hier! Je kunt het!</p>');
         // L.marker(end, { icon: finishIcon }).addTo(map).bindPopup('<h3>Eindpunt</h3><p>Gefeliciteerd, je bent er!</p>');
@@ -76,7 +86,7 @@
           .addTo(map)
           .bindPopup(`
             <h3>[Naam van degene die ik gesproken heb + locatie]</h3>
-            <img src="foto.jpg" alt="Naam" width="200" style="margin-top: 10px; border-radius: 8px;" />
+            <img src="fotos/foto.jpg" alt="Naam" width="200" style="margin-top: 10px; border-radius: 8px;" />
             <p><strong>Wat:</strong> tekst.<br>
             <strong>Tijd:</strong> tijd</p>
             <video width="250" controls>
@@ -88,7 +98,7 @@
         L.marker(latlngs[306])
           .addTo(map)
           .bindPopup(`
-            <h3>Kom later terug om het verhaal van deze plek te lezen</h3>
+            <h3>Kom later terug om het verhaal van deze plek te lezen.</h3>
             
           `);
         
@@ -96,7 +106,7 @@
         L.marker(latlngs[343])
           .addTo(map)
           .bindPopup(`
-            <h3>Kom later terug om het verhaal van deze plek te lezen</h3>
+            <h3>Kom later terug om het verhaal van deze plek te lezen.</h3>
             
           `);
         
@@ -132,9 +142,28 @@
             
           `);
 
+      // Wandelend poppetje toevoegen
+        const walkerIcon = L.icon({
+          iconUrl: 'loper.png',
+          iconSize: [25, 25],
+          iconAnchor: [16, 16]
+        });
+
+        const walker = L.marker(start, { icon: walkerIcon }).addTo(map);
+        let i = 0;
+
+        function moveWalker() {
+          if (i < latlngs.length) {
+            walker.setLatLng(latlngs[i]);
+            i++;
+            setTimeout(moveWalker, 100); // snelheid aanpassen
+          }
+        }
+
+        moveWalker(); // start animatie
       }
     })
     .addTo(map);
-</script>
+  </script>
 </body>
 </html>
